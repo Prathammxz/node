@@ -14,8 +14,8 @@ exports.renderLogin = async(req,res) =>{
 };
 
 exports.createStudent = async (req, res) =>{
-    console.log(req.body)
-    const {name, email, address,password}= req.body
+    console.log(req.file)
+    const {name, email, address,password,file}= req.body
     
     
     
@@ -29,7 +29,9 @@ exports.createStudent = async (req, res) =>{
         name: name,        // <---if column name is same as object, you can simply pass the name or else like this with (databse column name : object name)
         email: email,
         address: address,
-        password: bcrypt.hashSync(password,10),  //encrypting password, here 10 stands for salt which is to make decryption harder(hash is  one way, cannot be unhashed)
+        password: bcrypt.hashSync(password,10),
+        file: req.file.filename,  //encrypting password, here 10 stands for salt which is to make decryption harder(hash is  one way, cannot be unhashed)
+        //file: "http://localhost:4000/" + req.file.filename,   -----> alternate for above
     });
 
     //redirecting to another page

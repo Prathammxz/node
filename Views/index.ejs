@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>HELLO STUDENT</h1>
-    <form action="/register" method="POST">
+    <form action="/register" method="POST" enctype="multipart/form-data">
         <label for="name">Name:</label>
         <input type="text" name="name" required>
 
@@ -19,6 +19,9 @@
 
         <label for="password">Password</label>
         <input type="password" name="password" required>
+
+        <label for="file">File</label>
+        <input type="file" name="file" required>
         
         <input type="submit">
     

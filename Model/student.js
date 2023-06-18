@@ -16,6 +16,11 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      file: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+
     });
     return Student;
   };
