@@ -69,21 +69,30 @@ exports.loginStudent= async(req, res) =>{
 
 };
 
-exports.email = async(req,res) =>{
-try{
-    const{message} = req.body;
-    console.log(message);
-    await sendEmail({
-        to:"rahulgiree10@gmail.com",
-        subject: "notification",
-        text: message,
+exports.email= async(req,res)=>{
+    try{
+     const{message} = req.body
+     console.log(message);
 
-    });
-}
-catch(e){
-    console.log("eroor")
-}
-};
+     // finding email from database
+     const allUsers = await db.student.findAll({
+        
+     });
+     allUsers.forEach(async(user)=>{
+          await sendEmail({
+              to:user.email,
+              text:message,
+              subject:"Notification",
+      })
+     
+
+
+     })
+      }catch{
+         console.log("error sending mail")
+         res.render("error")
+      };
+ };
 
 exports.renderEmail = async(req,res) =>{    
     res.render("notification");
