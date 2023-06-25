@@ -25,6 +25,10 @@ app.get("/login", studentController.renderLogin);
 
 app.post("/login", studentController.loginStudent);
 
+app.post("/sendEmail", studentController.email);
+
+app.get("/sendEmail", studentController.renderEmail);
+
 app.use(express.static(path.join(__dirname,"Uploads")));
 
 

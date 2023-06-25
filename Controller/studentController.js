@@ -1,6 +1,7 @@
 const db = require("../Model/index");
 const Student = db.student;
 const bcrypt = require("bcryptjs");
+const sendEmail = require("../Services/sendEmail");
 
 exports.index = async (req, res) => {
 
@@ -42,7 +43,7 @@ exports.createStudent = async (req, res) =>{
 
 
 exports.loginStudent= async(req, res) =>{
-    console.log(req.body)
+    console.log(req.body)       //req.body is not required while getting data from databasse
     const{email,password} = req.body;
     console.log(email,password);
 
@@ -68,4 +69,22 @@ exports.loginStudent= async(req, res) =>{
 
 };
 
+exports.email = async(req,res) =>{
+try{
+    const{message} = req.body;
+    console.log(message);
+    await sendEmail({
+        to:"rahulgiree10@gmail.com",
+        subject: "notification",
+        text: message,
 
+    });
+}
+catch(e){
+    console.log("eroor")
+}
+};
+
+exports.renderEmail = async(req,res) =>{    
+    res.render("notification");
+};
