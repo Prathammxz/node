@@ -71,8 +71,8 @@ exports.loginStudent= async(req, res) =>{
 
 exports.email= async(req,res)=>{
     try{
-     const{message} = req.body
-     console.log(message);
+     const{subject, message} = req.body
+     console.log(subject, message);
 
      // finding email from database
      const allUsers = await db.student.findAll({
@@ -82,7 +82,7 @@ exports.email= async(req,res)=>{
           await sendEmail({
               to:user.email,
               text:message,
-              subject:"Notification",
+              subject: subject,
       })
      
 
