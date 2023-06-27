@@ -33,6 +33,8 @@ exports.createStudent = async (req, res) =>{
     });
 
     console.log(created);
+
+    //to notify the user upon succefssful registration.
     if(created){
       try {
           const message = "You have successfully registered.";
