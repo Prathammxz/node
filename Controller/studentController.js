@@ -17,16 +17,13 @@ exports.renderLogin = async(req,res) =>{
 exports.createStudent = async (req, res) =>{
     console.log(req.file)
     const {name, email, address,password,file}= req.body
-    
-    
-    
     // const name= req.body.name;
     // const email= req.body.email;
     // const address= req.body.address;
     // const contact= req.body.contact; <---same thing as writing all at once instead of individually---> const {name, email, address,contact}= req.body
 
  //create is for insreting into database 
-    db.student.create({    
+    const created = await db.student.create({    
         name: name,        // <---if column name is same as object, you can simply pass the name or else like this with (databse column name : object name)
         email: email,
         address: address,
@@ -35,6 +32,22 @@ exports.createStudent = async (req, res) =>{
         //file: "http://localhost:4000/" + req.file.filename,   -----> alternate for above
     });
 
+    console.log(created);
+    if(created){
+      try {
+          const message = "You have successfully registered.";
+      
+          await sendEmail({
+            to: req.body.email,
+            text: message,
+            subject: "Registration Successful",
+          });
+        } catch(e) {
+          console.log("error sending mail");
+          res.render("error");
+        }
+    }
+   
     //redirecting to another page
     res.redirect("/login")
 
