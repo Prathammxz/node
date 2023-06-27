@@ -20,6 +20,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: true,
       },
+      otp:{
+        type:DataTypes.INTEGER,
+        allowNull:true,
+      },
 
     });
     return Student;

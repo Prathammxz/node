@@ -11,6 +11,8 @@ app.set("view engine","ejs");
 require("./Config/db");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname,"Uploads")));
+
 
 //---------------database----------------
 
@@ -29,11 +31,11 @@ app.post("/sendEmail", studentController.email);
 
 app.get("/sendEmail", studentController.renderEmail);
 
-app.use(express.static(path.join(__dirname,"Uploads")));
-
 app.get("/forgotPassword",studentController.forgotPassword);
 
-app.get("/resetPassword",studentController.resetPassword);
+app.post("/verifyEmail",studentController.verifyEmail)
+
+app.post("/resetPassword",studentController.resetPassword)
 
 
 //starting the server
