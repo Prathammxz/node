@@ -97,3 +97,12 @@ exports.email= async(req,res)=>{
 exports.renderEmail = async(req,res) =>{    
     res.render("notification");
 };
+
+exports.forgotPassword=async(req,res)=>{
+    res.render('forgotPassword')
+
+};
+exports.resetPassword=async(req,res)=>{
+    res.render('resetPassword')
+
+};

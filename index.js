@@ -31,6 +31,9 @@ app.get("/sendEmail", studentController.renderEmail);
 
 app.use(express.static(path.join(__dirname,"Uploads")));
 
+app.get("/forgotPassword",studentController.forgotPassword);
+
+app.get("/resetPassword",studentController.resetPassword);
 
 
 //starting the server
